@@ -1,0 +1,113 @@
+# Visual Studio Code workspace
+*.code-workspace
+# Pyenv local virtual environment setting
+.python-version
+# gitignore for Python
+*.pyc
+__pycache__
+# postgresql docker volumes, one is for development, the other is depolyment
+dev_data
+data
+# gitignore for C++
+# Prerequisites
+*.d
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+# Compiled Dynamic libraries
+*.so
+*.dylib
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+# Precompiled Headers
+*.gch
+*.pch
+# Executables
+*.exe
+*.out
+*.app
+# Visual Studio Files
+*.suo
+*.csproj.user
+*.vbproj.user
+ipch
+*sdf
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+# User-specific files (MonoDevelop/Xamarin Studio)
+*.userprefs
+# Files built by Visual Studio
+*_i.c
+*_p.c
+*_h.h
+*.ilk
+*.meta
+*.obj
+*.iobj
+*.pch
+*.pdb
+*.ipdb
+*.pgc
+*.pgd
+*.rsp
+*.sbr
+*.tlb
+*.tli
+*.tlh
+*.tmp
+*.tmp_proj
+*_wpftmp.csproj
+*.log
+*.tlog
+*.vspscc
+*.vssscc
+.builds
+*.pidb
+*.svclog
+*.scc
+### Windows ###
+# Windows thumbnail cache files
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+# Visual C++ cache files
+ipch/
+*.aps
+*.ncb
+*.opendb
+*.opensdf
+*.sdf
+*.cachefile
+*.VC.db
+*.VC.VC.opendb
+.vs
+#
+_resource_design_
+_dev_tool_
+_delete_backup_
+# Paw project files
+*.paw
