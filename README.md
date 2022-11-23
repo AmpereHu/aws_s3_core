@@ -21,7 +21,6 @@ Boto3 AWS S3的實作，可以與Flask整合使用。
 
 ## How to use
 ```python
-'''
 import awsS3Core
 
 AWS_ACCESS_KEY_ID = [YOUR AWS ACCESS KEY in string format]
@@ -29,5 +28,4 @@ AWS_SECRET_ACCESS_KEY = [YOUR AWS SECRET ACCESS KEY in strgin format]
 REGION = [WHERE IS YOUR S3 REGION in string format]
 
 s3Helper = awsS3Core.awsS3Helper(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, REGION)
-'''
 ```
