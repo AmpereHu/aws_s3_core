@@ -5,18 +5,22 @@ import string
 
 # * Version 1 of awsS3Core - 2022/11/23
 # * Function List:
-# *     access_key getter & setter: 抓取/設定 AWS S3 的 Access Key
-# *     secret_access_key getter & setter: 抓取/設定 AWS S3 的 Secret Access Key
-# *     region getter & setter: 抓取/設定 AWS S3 的 Region
-# *     ReInitialization: 重新初始化 awsS3Core
-# *     create_bucket: 建立 AWS S3 的 Bucket
-# *     delete_bucket: 刪除 AWS S3 的 Bucket
-# *     list_buckets: 表列 AWS S3 的 Bucket
-# *     uploadFile: 上傳檔案到 AWS S3 至 Bucket 
-# *     downloadFile: 下載檔案到 AWS S3 至 Bucket
-# *     listFiles: 表列 AWS S3 的 Bucket 中的檔案
-# *     deleteFile: 刪除 AWS S3 的 Bucket 中的檔案
-# *     getFileAWSS3Link: 抓取 AWS S3 的 Bucket 中的檔案的連結
+# *     access_key getter & setter: 抓取/設定 AWS S3 的 Access Key。 Getter/Setter the access key of AWS S3.
+# *     secret_access_key getter & setter: 抓取/設定 AWS S3 的 Secret Access Key。Getter/Setter the secret access key of AWS S3.
+# *     region getter & setter: 抓取/設定 AWS S3 的 Region。Getter/Setter the region of AWS S3.
+# *     ReInitialization: 重新初始化 awsS3Core。Re-initialization of awsS3Core.
+# *     create_bucket: 建立 AWS S3 的 Bucket。Create a new bucket in AWS S3.
+# *     delete_bucket: 刪除 AWS S3 的 Bucket。Delete a bucket in AWS S3.
+# *     list_buckets: 表列 AWS S3 的 Bucket。List all buckets in AWS S3.
+# *     uploadFile: 上傳檔案到 AWS S3 至 Bucket。 Upload a file to a bucket of AWS S3.
+# *     downloadFile: 下載檔案到 AWS S3 至 Bucket。Download a file from a bucket of AWS S3.
+# *     listFiles: 表列 AWS S3 的 Bucket 中的檔案。List all files in a bucket of AWS S3.
+# *     deleteFile: 刪除 AWS S3 的 Bucket 中的檔案。Delete a file in a bucket of AWS S3.
+# *     getFileAWSS3Link: 抓取 AWS S3 的 Bucket 中的檔案的連結。Get a link of file in a bucket of AWS S3.
+
+# * Version 1.1 of awsS3Core - 2022/12/08
+# * Add:
+# *     setFileACLPolicy: 設定 AWS S3 的 Bucket 中的檔案的權限。Set ACL Policy of a file in a bucket of AWS S3.
 
 class awsS3Helper():
     def __init__(self, access_key, secret_access_key, region):
@@ -181,6 +185,17 @@ class awsS3Helper():
         # * @return: True or False
         try:
             self.s3.delete_object(Bucket=bucker_name, Key=keyName)
+        except ClientError as e:
+            return False
+        return True
+
+    def setFileACLPolicy(self, bucketName, keyName, Policy='public-read'):
+        # * @param bucketName: Bucket 名稱
+        # *        keyName: Key名稱 @ server side
+        # *        Policy: ACL Policy
+        # * @return: True or False
+        try:
+            self.s3.put_object_acl(Bucket=bucketName, Key=keyName, ACL=Policy)
         except ClientError as e:
             return False
         return True
