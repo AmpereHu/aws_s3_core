@@ -1,5 +1,6 @@
 import boto3
 from botocore.exceptions import ClientError
+from boto3.s3.transfer import TransferConfig
 
 import string
 
@@ -21,6 +22,10 @@ import string
 # * Version 1.1 of awsS3Core - 2022/12/08
 # * Add:
 # *     setFileACLPolicy: 設定 AWS S3 的 Bucket 中的檔案的權限。Set ACL Policy of a file in a bucket of AWS S3.
+
+# * Version 1.2 of awsS3Core - 2023/02/14
+# * Add:
+# *     fastUploadFile: 快速地上傳檔案到 AWS S3 至 Bucket。 Upload a file to a bucket of AWS S3 quickly.
 
 class awsS3Helper():
     def __init__(self, access_key, secret_access_key, region):
@@ -156,6 +161,20 @@ class awsS3Helper():
         # * @return: True or False
         try:
             self.s3.upload_file(fileName, bucketName, keyName)
+        except ClientError as e:
+            return False
+        return True
+    
+    def fastUploadFile(self, fileName, bucketName, keyName):
+        # * @param fileName: 檔案名稱 @ client side
+        # *        bucketName: Bucket 名稱
+        # *        keyName: Key名稱 @ server side
+        # * @return: True or False
+        config = TransferConfig(multipart_threshold=1024*250, max_concurrency=20,
+                                multipart_chunksize=1024*250, use_threads=True)
+        try:
+            with open(fileName, 'rb') as data:
+                self.s3.upload_fileobj(data, bucketName, keyName, Config=config)
         except ClientError as e:
             return False
         return True
