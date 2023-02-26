@@ -19,6 +19,12 @@ Boto3 AWS S3的實作，可以與Flask整合使用。
   * deleteFile: 刪除 AWS S3 的 Bucket 中的檔案  
   * getFileAWSS3Link: 抓取 AWS S3 的 Bucket 中的檔案的連結  
 
+### Version 1.1 - 2022/12/08:
+  * setFileACLPolicy: 設定 AWS S3 的 Bucket 中的檔案的權限。
+
+### Version 1.2 - 2023/02/14
+  * fastUploadFile: 快速地上傳檔案到 AWS S3 至 Bucket。
+
 ## How to use
 ```python
 import awsS3Core
